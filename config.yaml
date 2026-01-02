@@ -4,7 +4,7 @@ runtime:
 api_datasource:
   FMP:
     class: financialmodelingprep
-    api_key: "PMF_API_KEY"
+    api_key_in_env: "PMF_API_KEY"
     base_url: 'https://financialmodelingprep.com/stable/'
     coverage: 
       income_statement: 'income_statement'

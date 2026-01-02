@@ -1,17 +1,22 @@
 import requests
 import json
+from src.config import get_datasource, check_datasource_api_key_and_return
+
+datasource = get_datasource()
+api_key = check_datasource_api_key_and_return(datasource)
 
 def main() -> None:
     print("entrypoint active")
 
 def fetch_financial_data(statement_type: str, symbol: str, limit: int, period: str, api_key: str) -> dict:
     url = f'https://financialmodelingprep.com/stable/{statement_type}?symbol={symbol}&limit={limit}&period={period}&apikey={api_key}'
+    print(url)
     response = requests.get(url)
     if response.status_code != 200:
         raise Exception(f"API request failed with status code {response.status_code}")
     return response.json()
 
-def categorical_data_scalper(financial_data: list[dict], category_list: list[str]) -> list[dict]:
+def categorical_data_scalper(financial_data: list, category_list: list[str]) -> list:
 
     output_list = []
 
@@ -28,7 +33,7 @@ def categorical_data_scalper(financial_data: list[dict], category_list: list[str
             output_dict[category] = records.get(category)
         output_list.append(output_dict)
 
-
+    return output_list
 
 test_request = fetch_financial_data('income-statement', 'AAPL', 1, 'quarter', api_key)
 
