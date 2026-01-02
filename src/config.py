@@ -69,19 +69,6 @@ def get_datasource(name: str | None = None) -> Dict[str, Any]:
 
     return ds
 
-def check_datasource_api_key_and_return(ds: Dict[str, Any]) -> None:
-    """
-    Validate that the datasource dict has an api_key set.
-    """
-    api_key_in_env = ds.get("api_key_in_env")
-    if not api_key_in_env:
-        raise RuntimeError("Datasource is missing required 'api_key' value")
-    api_key = os.getenv(api_key_in_env)
-    if not api_key:
-        raise RuntimeError(f"Datasource api_key_in_env '{api_key_in_env}' not found in environment variables")
-    
-    return api_key
-
 def get_cfg() -> Dict[str, Any]:
     """
     Return raw parsed YAML config (no secret injection).
