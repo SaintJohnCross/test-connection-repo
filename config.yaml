@@ -1,0 +1,14 @@
+runtime:
+  datasource: FMP
+
+api_datasource:
+  FMP:
+    class: financialmodelingprep
+    api_key: "PMF_API_KEY"
+    base_url: 'https://financialmodelingprep.com/stable/'
+    coverage: 
+      income_statement: 'income_statement'
+      balance_sheet: 'balance_sheet'
+      cash_flow: 'cash_flow_statement'
+      ratios: 'ratios-ttm'
+      key_metrics: 'key-metrics-ttm'
