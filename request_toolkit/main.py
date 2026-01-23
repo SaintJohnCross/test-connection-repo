@@ -34,6 +34,7 @@ def check_datasource_api_key_and_return(ds: Dict[str, Any]) -> str:
     api_key = os.getenv(api_key_in_env)
     if not api_key:
         raise RuntimeError(f"Datasource api_key_in_env '{api_key_in_env}' not found in environment variables")
+    return(api_key)
     
 def check_datasource_url_and_return(ds: Dict[str, Any]) -> str:
     """
@@ -50,7 +51,8 @@ def fetch_financial_data(statement_type: str,
                          limit: int, 
                          period: str, 
                          api_key: str) -> List[Dict[str, Any]]:
-    url = f'{base_url}/{statement_type}?symbol={symbol}&limit={limit}&period={period}&apikey={api_key}'
+    url = f'{base_url}{statement_type}?symbol={symbol}&limit={limit}&period={period}&apikey={api_key}'
+    print(url)
     response = requests.get(url)
     if response.status_code != 200:
         raise Exception(f"API request failed with status code {response.status_code}")

@@ -25,6 +25,8 @@ def _load_yaml() -> Dict[str, Any]:
         raise FileNotFoundError(f"Missing config.yaml at: {CONFIG_PATH}")
     with open(CONFIG_PATH, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
+    
+    # where did cfg pop out of?
     if not isinstance(cfg, dict):
         raise RuntimeError("config.yaml did not parse into a dict")
     return cfg

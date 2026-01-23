@@ -1,5 +1,9 @@
+# always declare intent in the Yaml, never any logic here
+
 runtime:
   datasource: FMP
+  run_status: debug # debug | production
+  universe: S&Phead # S&Phead | S&Pfull
 
 api_datasource:
   FMP:
@@ -12,3 +16,6 @@ api_datasource:
       cash_flow: 'cash_flow_statement'
       ratios: 'ratios-ttm'
       key_metrics: 'key-metrics-ttm'
+
+fixtures:
+  base_path: data/fixtures
